@@ -3,7 +3,7 @@
 ## Introduction
 L'objectif de ce TP est de prendre en main l'environnement Docker et plus si affinitée !
 
-Le but de ce TP est de créer trois conteneurs :
+Le but de ce TP est de créer trois conteneurs:
 
 - Un serveur Web : Apache
 - Un serveur backend avec une API : Java
