@@ -1,0 +1,31 @@
+language: java
+
+jobs:
+  include:
+    - stage: "Tests"
+      name: "SonarCloud tests"
+      script:
+        - mvn clean verify org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=devops-2020
+      if: branch = main
+
+    - stage: "Builds"
+      name: "Build and Push to DockerHub"
+      script:
+        - echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_LOGIN" --password-stdin
+        - docker build -t "$DOCKERHUB_LOGIN"/tp-devops-epf:app-http-students sample-application-http-api-server
+        - docker build -t "$DOCKERHUB_LOGIN"/tp-devops-epf:app-db-students sample-application-db-changelog-job
+        - docker push "$DOCKERHUB_LOGIN"/tp-devops-epf:app-http-students
+        - docker push "$DOCKERHUB_LOGIN"/tp-devops-epf:app-db-students
+      if: branch = main
+
+cache:
+  directories:
+    - $HOME/.m2
+
+services:
+  - docker
+
+addons:
+  sonarcloud:
+    organization: "devops-epf"
+    token: "$SONARCLOUD_TOKEN"
