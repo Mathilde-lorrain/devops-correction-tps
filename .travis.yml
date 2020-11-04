@@ -5,7 +5,7 @@ jobs:
     - stage: "Tests"
       name: "SonarCloud tests"
       script:
-        - mvn clean verify org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=devops-2020
+        - mvn clean verify --file ./simple-api/pom.xml org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=devops-2020
       if: branch = main
 
     - stage: "Builds"
