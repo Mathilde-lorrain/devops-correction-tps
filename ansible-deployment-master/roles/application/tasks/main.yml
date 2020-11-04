@@ -1,6 +1,6 @@
 - name: Launch db changelog job
   docker_container:
-    name: my_db_changelog
+    name: database
     image: "{{ my_docker_repo }}/application-students-test-db-changelog-job"
     pull: yes # When using latest
     networks:

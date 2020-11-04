@@ -8,7 +8,7 @@ all:
     my_db_name: db
     my_db_hostname: database
     my_application_name: backend
-    my_docker_repo: mydockerhub
+    my_docker_repo: 17021997
   children:
     prod:
       hosts: mlorrain.takima.cloud

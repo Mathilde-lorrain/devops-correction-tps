@@ -12,10 +12,12 @@ jobs:
       name: "Build and Push to DockerHub"
       script:
         - echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_LOGIN" --password-stdin
-        - docker build -t "$DOCKERHUB_LOGIN"/tp-devops-epf:app-http-students sample-application-http-api-server
-        - docker build -t "$DOCKERHUB_LOGIN"/tp-devops-epf:app-db-students sample-application-db-changelog-job
-        - docker push "$DOCKERHUB_LOGIN"/tp-devops-epf:app-http-students
-        - docker push "$DOCKERHUB_LOGIN"/tp-devops-epf:app-db-students
+        - docker build -t "$DOCKERHUB_LOGIN"/tp-devops-epf:database database
+        - docker build -t "$DOCKERHUB_LOGIN"/tp-devops-epf:simple-api simple-api
+        - docker build -t "$DOCKERHUB_LOGIN"/tp-devops-epf:httpd httpd
+        - docker push "$DOCKERHUB_LOGIN"/tp-devops-epf:tp-devops-epf:simple-api
+        - docker push "$DOCKERHUB_LOGIN"/tp-devops-epf:tp-devops-epf:database
+        - docker push "$DOCKERHUB_LOGIN"/tp-devops-epf:tp-devops-epf:httpd
       if: branch = main
 
 cache:
