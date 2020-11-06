@@ -15,9 +15,11 @@ jobs:
         - docker build -t "$DOCKERHUB_LOGIN"/tp-devops-epf:database database
         - docker build -t "$DOCKERHUB_LOGIN"/tp-devops-epf:simple-api simple-api
         - docker build -t "$DOCKERHUB_LOGIN"/tp-devops-epf:httpd httpd
+        - docker build -t "$DOCKERHUB_LOGIN"/tp-devops-epf:front front
         - docker push "$DOCKERHUB_LOGIN"/tp-devops-epf:simple-api
         - docker push "$DOCKERHUB_LOGIN"/tp-devops-epf:database
         - docker push "$DOCKERHUB_LOGIN"/tp-devops-epf:httpd
+        - docker push "$DOCKERHUB_LOGIN"/tp-devops-epf:front
       if: branch = main
 
 cache:

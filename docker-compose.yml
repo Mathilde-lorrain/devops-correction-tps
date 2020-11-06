@@ -24,8 +24,16 @@ services:
       - "80:80"
     networks:
       - app-network
+    depends_on:
+      - front
 
-
+  front:
+    container_name: front
+    build: ./front
+    networks:
+      - app-network
+    depends_on:
+      - backend
 volumes:
   my_db_volume:
     driver: local
