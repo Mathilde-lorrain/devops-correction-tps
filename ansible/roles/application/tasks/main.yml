@@ -6,7 +6,9 @@
     recreate: yes
     networks:
       - name: "my_network"
+    ports:
+      - 8080:8080
     env:
       SPRING_DATASOURCE_USERNAME: "{{ my_db_user }}"
       SPRING_DATASOURCE_PASSWORD: "{{ my_db_password }}"
-      SPRING_DATASOURCE_URL: "jdbc:postgresql://{{ my_db_hostname }}:5432/{{ my_db_name }}"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://{{ my_db_hostname}}:5432/{{ my_db_name }}"

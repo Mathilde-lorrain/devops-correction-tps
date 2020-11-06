@@ -1,4 +1,3 @@
----
 all:
   vars:
     ansible_user: centos
@@ -6,10 +5,11 @@ all:
     my_db_user: usr
     my_db_password: pwd # should be encrypted with a vault
     my_db_name: db
+    my_front_name: front
     my_db_hostname: database
     my_application_name: backend
     my_docker_repo: 17021997
+    my_server: http://mlorrain.takima.cloud:8080
   children:
     prod:
       hosts: mlorrain.takima.cloud
-...

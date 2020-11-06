@@ -6,6 +6,6 @@
     - configurations
     - database
     - application
+    - front
     - httpd
-    - firewalld
 ...

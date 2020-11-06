@@ -1,0 +1,10 @@
+- name: Launch front
+  docker_container:
+    name: "{{ my_front_name }}"
+    image: "{{ my_docker_repo }}/tp-devops-epf:front"
+    pull: yes # When using latest
+    recreate: yes
+    networks:
+      - name: "my_network"
+    env:
+      VUE_APP_API_URL: "{{ my_server }}"
