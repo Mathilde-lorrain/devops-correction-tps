@@ -1,7 +1,7 @@
 - name: Create docker database
   docker_container:
     name: "{{ my_db_hostname }}"
-    image: "postgres:12"
+    image: "{{ my_docker_repo }}/tp-devops-epf:database"
     state: started
     env:
       POSTGRES_USER: "{{ my_db_user }}"

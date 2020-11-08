@@ -1,0 +1,32 @@
+---
+- name: Install openssh-client
+  community.general.apk:
+    name: openssh-client
+    state: present
+
+# Depending if we want to deploy on r7 or staging
+- name: Add the remote private key
+  shell: |
+    eval $(ssh-agent -s)
+    echo "{{ssh_remote_private_key}}" | tr -d '\r' | ssh-add -
+
+- name: Create the .ssh directory and add privilege
+  file:
+    path: ~/.ssh
+    state: directory
+    mode: '0700'
+
+- name: Create the ssh key id_rsa_ansible_synapse
+  copy:
+    content: "{{id_rsa}}"
+    dest: ~/.ssh/id_rsa
+    mode: '0600'
+
+- name: Create known-host file and add privilege
+  file:
+    path: ~/.ssh/known_hosts
+    state: touch
+    mode: '0644'
+
+- name: Add the remote-host to known host
+  shell: ssh-keyscan "{{remote_host}}" >> ~/.ssh/known_hosts
