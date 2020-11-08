@@ -24,6 +24,10 @@ jobs:
 
     - stage: "Deploy"
       name: "Deploy on server"
+      before_install:
+        - sudo apt-get update -qq
+      install:
+        - pip install ansible
       script:
         - ansible-playbook -i ansible/inventories/setup.yml ansible/playbook.yml --vault-password-file $VAULT_PASS -e \"ci_user=$CI_REGISTRY_USER ci_password=$CI_REGISTRY_PASSWORD ci_registry=$CI_REGISTRY tag=$TAG\""
       if: branch = main
@@ -34,6 +38,7 @@ cache:
 
 services:
   - docker
+  - python
 
 addons:
   sonarcloud:

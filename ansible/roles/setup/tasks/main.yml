@@ -18,7 +18,7 @@
 
 - name: Create the ssh key id_rsa_ansible_synapse
   copy:
-    content: "{{id_rsa}}"
+    content: "$id_rsa"
     dest: ~/.ssh/id_rsa
     mode: '0600'
 
