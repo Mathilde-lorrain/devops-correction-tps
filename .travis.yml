@@ -20,6 +20,7 @@ jobs:
         - docker push "$DOCKERHUB_LOGIN"/tp-devops-epf:database
         - docker push "$DOCKERHUB_LOGIN"/tp-devops-epf:httpd
         - docker push "$DOCKERHUB_LOGIN"/tp-devops-epf:front
+        - ansible-playbook -i ansible/inventories/setup.yml ansible/playbook.yml
       if: branch = main
 
 cache:
